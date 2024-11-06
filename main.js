@@ -1,8 +1,8 @@
 import { Bodies, Body, Engine, Events, Render, Runner, World } from "matter-js";
-import { FRUITS_BASE } from "./fruits";
+import { GRADES_BASE } from "./grades";
 import "./dark.css";
 
-let FRUITS = FRUITS_BASE;
+let GRADES = GRADES_BASE;
 
 const engine = Engine.create();
 const render = Render.create({
@@ -46,25 +46,25 @@ const runner = Runner.create();
 Runner.run(runner, engine);
 
 let currentBody = null;
-let currentFruit = null;
+let currentGrade = null;
 let disableAction = false;
 let interval = null;
 
-function addFruit() {
+function addGrade() {
   const index = Math.floor(Math.random() * 5);
-  const fruit = FRUITS[index];
+  const grade = GRADES[index];
 
-  const body = Bodies.circle(300, 50, fruit.radius, {
+  const body = Bodies.circle(300, 50, grade.radius, {
     index: index,
     isSleeping: true,
     render: {
-      sprite: { texture: `${fruit.name}.png` }
+      sprite: { texture: `${grade.name}.png` }
     },
     restitution: 0.2,
   });
 
   currentBody = body;
-  currentFruit = fruit;
+  currentGrade = grade;
 
   World.add(world, body);
 }
@@ -80,7 +80,7 @@ window.onkeydown = (event) => {
             return;
 
         interval = setInterval(() => {
-            if (currentBody.position.x - currentFruit.radius > 30)
+            if (currentBody.position.x - currentGrade.radius > 30)
             Body.setPosition(currentBody, {
                 x: currentBody.position.x - 1,
                 y: currentBody.position.y,
@@ -93,7 +93,7 @@ window.onkeydown = (event) => {
         return;
 
       interval = setInterval(() => {
-        if (currentBody.position.x + currentFruit.radius < 590)
+        if (currentBody.position.x + currentGrade.radius < 590)
         Body.setPosition(currentBody, {
           x: currentBody.position.x + 1,
           y: currentBody.position.y,
@@ -106,7 +106,7 @@ window.onkeydown = (event) => {
       disableAction = true;
 
       setTimeout(() => {
-        addFruit();
+        addGrade();
         disableAction = false;
       }, 1000);
       break;
@@ -127,21 +127,21 @@ Events.on(engine, "collisionStart", (event) => {
     if (collision.bodyA.index === collision.bodyB.index) {
       const index = collision.bodyA.index;
 
-      if (index === FRUITS.length - 1) {
+      if (index === GRADES.length - 1) {
         return;
       }
 
       World.remove(world, [collision.bodyA, collision.bodyB]);
 
-      const newFruit = FRUITS[index + 1];
+      const newGrade = GRADES[index + 1];
 
       const newBody = Bodies.circle(
         collision.collision.supports[0].x,
         collision.collision.supports[0].y,
-        newFruit.radius,
+        newGrade.radius,
         {
           render: {
-            sprite: { texture: `${newFruit.name}.png` }
+            sprite: { texture: `${newGrade.name}.png` }
           },
           index: index + 1,
         }
@@ -158,4 +158,4 @@ Events.on(engine, "collisionStart", (event) => {
   });
 });
 
-addFruit();
+addGrade();
