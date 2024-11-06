@@ -51,7 +51,7 @@ let disableAction = false;
 let interval = null;
 
 function addGrade() {
-  const index = Math.floor(Math.random() * 5);
+  const index = Math.floor(Math.random() * 3);
   const grade = GRADES[index];
 
   const body = Bodies.circle(300, 50, grade.radius, {
