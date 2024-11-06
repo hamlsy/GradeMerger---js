@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.back-button {
+  color: #f0f0f0;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.back-button i {
+  font-size: 20px;
+}
+
+.game-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.pause-button {
+  background-color: #4CAF50;
+  color: #f0f0f0;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pause-button:hover {
+  background-color: #45a049;
+}
+
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px); /* 헤더 높이 제외 */
+}
+
+.game-over-popup {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.popup-content {
+  background-color: #333;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.popup-header h2 {
+  margin: 0;
+}
+
+.close-button {
+  background-color: transparent;
+  color: #f0f0f0;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.retry-button, .main-menu-button {
+  background-color: #4CAF50;
+  color: #f0f0f0;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.retry-button i, .main-menu-button i {
+  margin-right: 8px;
+}
+
+.retry-button:hover, .main-menu-button:hover {
+  background-color: #45a049;
+}
