@@ -50,6 +50,31 @@ let currentBody = null;
 let currentGrade = null;
 let disableAction = false;
 let interval = null;
+// 3, 2, 1 카운트다운 및 "Game Start!!" 문구 표시
+let countdownInterval;
+let countdownValue = 3;
+const countdownElement = document.createElement("div");
+countdownElement.style.position = "absolute";
+countdownElement.style.top = "50%";
+countdownElement.style.left = "50%";
+countdownElement.style.transform = "translate(-50%, -50%)";
+countdownElement.style.fontSize = "50px";
+countdownElement.style.fontWeight = "bold";
+countdownElement.style.zIndex = 333;
+countdownElement.textContent = countdownValue;
+document.body.appendChild(countdownElement);
+
+countdownInterval = setInterval(() => {
+  countdownValue--;
+  countdownElement.textContent = countdownValue;
+  if (countdownValue === 0) {
+    clearInterval(countdownInterval);
+    countdownElement.textContent = "Game Start!!";
+    setTimeout(() => {
+      document.body.removeChild(countdownElement);
+    }, 1000);
+  }
+}, 1000);
 
 function addGrade() {
   const index = Math.floor(Math.random() * 3);
@@ -122,16 +147,35 @@ window.onkeyup = (event) => {
       interval = null;
   }
 }
+let aGrades = 0; // A+ 공 개수를 세기 위한 변수
 
 Events.on(engine, "collisionStart", (event) => {
   event.pairs.forEach((collision) => {
     if (collision.bodyA.index === collision.bodyB.index) {
       const index = collision.bodyA.index;
-
-      if (index === GRADES.length - 1) {
+      console.log(index+1);
+      console.log(GRADES.length-1);
+      console.log("win!!!!");
+      const winPopup = document.getElementById("winPopup");
+      const gameWindow = document.getElementById("gameWindow");
+      winPopup.style.display = "block";
+      World.remove(world, [leftWall, rightWall, ground, topLine]);
+      // Render와 Engine을 중지
+      Engine.clear(engine);
+      Render.stop(render);
+      Runner.stop(runner);
+      
+      if (index+1 === GRADES.length - 1) {
+        // A+ 공이 3개 이상이면 승리 팝업 표시
+        aGrades += 1;
+        if (aGrades >= 0) {
+          console.log("win!!!!");
+          const winPopup = document.getElementById("winPopup");
+          const gameWindow = document.getElementById("gameWindow");
+          winPopup.style.display = "block";
+        }
         return;
       }
-
       World.remove(world, [collision.bodyA, collision.bodyB]);
 
       const newGrade = GRADES[index + 1];
@@ -158,5 +202,7 @@ Events.on(engine, "collisionStart", (event) => {
     }
   });
 });
+
+
 
 addGrade();
