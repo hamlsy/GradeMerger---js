@@ -1,12 +1,14 @@
 const ITEMS_BASE = [
     {
       name: "base/task",
-      radius: 80 / 2,
+      radius: 100 / 2,
+      isItem: true,
     },
     {
       name: "base/bomb",
-      radius: 80 / 2,
-    }
+      radius: 100 / 2,
+      isItem: true,
+    },
   ];
   
   export { ITEMS_BASE };
