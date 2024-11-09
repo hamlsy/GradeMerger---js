@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Game</title>
+  <link rel="stylesheet" href="game-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1 class="game-title">Grade Merger!</h1>
+    </div>
+    <div class="header-right">
+      <button class="pause-button">
+        <i class="fas fa-pause"></i>
+      </button>
+    </div>
+  </header>
+  
+  <canvas id="gameWindow">
+    <script type="module" src="game-stage1.js"></script>
+  </canvas>
+  
+  <div class="game-over-popup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h2>Game Over</h2>
+        <button class="close-button">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <p>You've reached the game over condition.</p>
+      <div class="button-container">
+        <button class="retry-button">
+          <i class="fas fa-redo"></i>
+          Retry
+        </button>
+        <button class="main-menu-button">
+          <i class="fas fa-home"></i>
+          Main Menu
+        </button>
+      </div>
+    </div>
+  </div>
+    <div class="win-popup" id="winPopup" hidden>
+      <div class="popup-content">
+        <div class="popup-header">
+          <h2>Win!!</h2>
+          <button type="button" onclick="closePopup();" class="close-button">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <p>your winner.</p>
+      </div>
+    </div>
+  <!-- <script src="/game.js"></script> -->
+  <script>
+    function closePopup(){
+      const winPopup = document.getElementById("winPopup");
+      winPopup.style.display = "none";
+    }
+  </script>
+</body>
+
+</html>
