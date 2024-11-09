@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage Selection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+        font-family: 'Righteous', cursive;
+        margin: 0;
+        padding: 0;
+        /* background-image: linear-gradient(to right, #ff6b6b, #ffa500); */
+        background-image: linear-gradient(to right, #48f55f, #3b3ef8);
+        color: #fff;
+        }
+        .stage-body-container {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            font-family: Arial, sans-serif;
+            font-family: 'Righteous', cursive;
+            margin: 0;
+            padding: 0;
+            /* background-image: linear-gradient(to right, #ff6b6b, #ffa500); */
+            background-image: linear-gradient(to right, #48f55f, #3b3ef8);
+            color: #fff;
+        }
+        header {
+            /* background-image: linear-gradient(to right, #ff6b6b, #ffa500); */
+            background-image: linear-gradient(to right, #48f55f, #3b3ef8);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stage-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .stage-button {
+            width: 200px;
+            height: 100px;
+            border: none;
+            border-radius: 15px;
+            background-color: #E6B143;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .stage-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .stage-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 40px;
+            margin-right: 10px;
+        }
+
+        .site-title {
+        margin: 0;
+        font-size: 20px;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: calc(100vh - 60px); /* 헤더 높도 제외 */
+        }
+
+        .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        }
+        .back-button {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 10px;
+        }
+
+        .back-button i {
+        font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+          <h1 class="site-title">Grade Merger!</h1>
+        </div>
+    </header>
+    <div class="stage-body-container">
+        <div class="stage-container">
+            <button class="stage-button" onclick="location.href='game.html'">STAGE 1</button>
+            <button class="stage-button" onclick="location.href='game.html'">STAGE 2</button>
+            <button class="stage-button" onclick="location.href='game.html'">STAGE 3</button>
+        </div>
+    </div>
+    
+</body>
+</html>

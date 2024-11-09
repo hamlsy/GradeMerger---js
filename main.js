@@ -20,7 +20,7 @@ window.addEventListener('click', (event) => {
 // 게임 시작 버튼 관련 코드
 const gameButton = document.querySelector('.game-button');
 gameButton.addEventListener('click', () => {
-  window.location.href = 'game.html';
+  window.location.href = 'game-select.html';
 });
 
 // 나가기 버튼 관련 코드

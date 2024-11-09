@@ -153,26 +153,21 @@ Events.on(engine, "collisionStart", (event) => {
   event.pairs.forEach((collision) => {
     if (collision.bodyA.index === collision.bodyB.index) {
       const index = collision.bodyA.index;
-      console.log(index+1);
-      console.log(GRADES.length-1);
-      console.log("win!!!!");
-      const winPopup = document.getElementById("winPopup");
-      const gameWindow = document.getElementById("gameWindow");
-      winPopup.style.display = "block";
-      World.remove(world, [leftWall, rightWall, ground, topLine]);
-      // Render와 Engine을 중지
-      Engine.clear(engine);
-      Render.stop(render);
-      Runner.stop(runner);
       
       if (index+1 === GRADES.length - 1) {
         // A+ 공이 3개 이상이면 승리 팝업 표시
         aGrades += 1;
-        if (aGrades >= 0) {
+        if (aGrades >= 3) {
           console.log("win!!!!");
           const winPopup = document.getElementById("winPopup");
           const gameWindow = document.getElementById("gameWindow");
           winPopup.style.display = "block";
+
+          World.remove(world, [leftWall, rightWall, ground, topLine]);
+          // Render와 Engine을 중지
+          Engine.clear(engine);
+          Render.stop(render);
+          Runner.stop(runner);
         }
         return;
       }
