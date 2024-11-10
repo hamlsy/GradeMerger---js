@@ -1,45 +1,11 @@
 # GradeMerger Game
 # 📚 Grade Merger 성적 합치기 게임
 
-## 🇺🇸 English Version
-
-### 🎮 Game Overview
-Welcome to Grade Merger, an exciting JavaScript-based puzzle game where your goal is to collect three A+ grades by merging similar grades together!
-
-### 📋 Basic Rules
-- **Grade Hierarchy**: F → D → C → B → A → A+
-- **Merging Mechanism**: When identical grades meet, they combine to form the next higher grade
-- **Victory Condition**: Collect three A+ grades
-- **Game Over**: If any grade crosses the GameOver line
-
-### 🌟 Stages
-
-#### 🎯 Stage 1: Basic Mode
-- Simple merging mechanics
-- No special items or time constraints
-- Perfect for beginners!
-
-#### 💫 Stage 2: Item Mode
-Special items appear randomly:
-- 📝 **Task Item**
-  - Decreases grade by one level when touched
-  - Only affects grades below A
-- 💣 **Bomb Item**
-  - Removes the grade it touches completely
-  - Only affects grades below A
-
-#### ⚡ Stage 3: Time Attack
-- Ground rises every 20 seconds with earthquake effects
-- Race against time before the ground reaches the GameOver line
-- Quick thinking and fast merging required!
-
-### 🎯 Tips for Success
-- Plan your merges carefully
-- Watch the GameOver line
-- Use items strategically in Stage 2
-- Move quickly in Stage 3's time attack
-
----
+## 실행 방법
+```
+npm run dev
+```
+이후 localhost 주소 접속
 
 ## 🇰🇷 한글 버전
 
@@ -73,3 +39,36 @@ Special items appear randomly:
 - 빠른 판단력과 순발력이 필요합니다!
 
 ### 🎉 즐거운 게임 되세요!
+
+## 🇺🇸 English Version
+
+### 🎮 Game Overview
+Welcome to Grade Merger, an exciting JavaScript-based puzzle game where your goal is to collect three A+ grades by merging similar grades together!
+
+### 📋 Basic Rules
+- **Grade Hierarchy**: F → D → C → B → A → A+
+- **Merging Mechanism**: When identical grades meet, they combine to form the next higher grade
+- **Victory Condition**: Collect three A+ grades
+- **Game Over**: If any grade crosses the GameOver line
+
+### 🌟 Stages
+
+#### 🎯 Stage 1: Basic Mode
+- Simple merging mechanics
+- No special items or time constraints
+- Perfect for beginners!
+
+#### 💫 Stage 2: Item Mode
+Special items appear randomly:
+- Only affects grades below A
+- 📝 **Task Item**
+  - Decreases grade by one level when touched
+- 💣 **Bomb Item**
+  - Removes the grade it touches completely
+
+#### ⚡ Stage 3: Time Attack
+- Ground rises every 20 seconds with earthquake effects
+- Race against time before the ground reaches the GameOver line
+- Quick thinking and fast merging required!
+
+---
