@@ -50,31 +50,6 @@ let currentBody = null;
 let currentGrade = null;
 let disableAction = false;
 let interval = null;
-// 3, 2, 1 카운트다운 및 "Game Start!!" 문구 표시
-let countdownInterval;
-let countdownValue = 3;
-const countdownElement = document.createElement("div");
-countdownElement.style.position = "absolute";
-countdownElement.style.top = "50%";
-countdownElement.style.left = "50%";
-countdownElement.style.transform = "translate(-50%, -50%)";
-countdownElement.style.fontSize = "50px";
-countdownElement.style.fontWeight = "bold";
-countdownElement.style.zIndex = 333;
-countdownElement.textContent = countdownValue;
-document.body.appendChild(countdownElement);
-
-countdownInterval = setInterval(() => {
-  countdownValue--;
-  countdownElement.textContent = countdownValue;
-  if (countdownValue === 0) {
-    clearInterval(countdownInterval);
-    countdownElement.textContent = "Game Start!!";
-    setTimeout(() => {
-      document.body.removeChild(countdownElement);
-    }, 1000);
-  }
-}, 1000);
 
 function addGrade() {
   const index = Math.floor(Math.random() * 3);

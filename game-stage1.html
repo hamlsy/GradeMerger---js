@@ -20,10 +20,14 @@
       </button>
     </div>
   </header>
+  <!-- 카운트다운 로직 -->
+  <div class="countdown-overlay" id="countdownOverlay">
+    <div class="countdown" id="countdown">3</div>
+  </div>
   
-  <canvas id="gameWindow">
-    <script type="module" src="game-stage1.js"></script>
-  </canvas>
+  <div class="game-start" id="gameStart">Game Start!</div>
+  <!--  -->
+  <canvas id="gameWindow"></canvas>
   
   <div class="game-over-popup">
     <div class="popup-content">
@@ -63,6 +67,43 @@
       const winPopup = document.getElementById("winPopup");
       winPopup.style.display = "none";
     }
+
+     // 카운트다운 및 게임 시작 로직
+     document.addEventListener('DOMContentLoaded', () => {
+      const countdownOverlay = document.getElementById('countdownOverlay');
+      const countdownElement = document.getElementById('countdown');
+      const gameStart = document.getElementById('gameStart');
+      let count = 3;
+
+      function updateCountdown() {
+        if (count > 0) {
+          // 카운트다운 애니메이션 리셋
+          countdownElement.style.animation = 'none';
+          countdownElement.offsetHeight; // 리플로우 강제
+          countdownElement.style.animation = 'countScale 1s ease-in-out';
+          
+          countdownElement.textContent = count;
+          count--;
+          setTimeout(updateCountdown, 1000);
+        } else {
+          // 카운트다운 오버레이 제거
+          countdownOverlay.style.display = 'none';
+          
+          // Game Start! 표시
+          gameStart.classList.add('show');
+          
+          // 게임 스크립트 로드
+          setTimeout(() => {
+            const gameScript = document.createElement('script');
+            gameScript.type = 'module';
+            gameScript.src = 'game-stage1.js';
+            document.body.appendChild(gameScript);
+          }, 1000); // Game Start! 애니메이션이 시작된 후 게임 로드
+        }
+      }
+
+      updateCountdown();
+    });
   </script>
 </body>
 

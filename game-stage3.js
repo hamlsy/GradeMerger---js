@@ -56,31 +56,6 @@ let currentGrade = null;
 let disableAction = false;
 let interval = null;
 let currentItem = null;
-// 3, 2, 1 카운트다운 및 "Game Start!!" 문구 표시
-let countdownInterval;
-let countdownValue = 3;
-const countdownElement = document.createElement("div");
-countdownElement.style.position = "absolute";
-countdownElement.style.top = "50%";
-countdownElement.style.left = "50%";
-countdownElement.style.transform = "translate(-50%, -50%)";
-countdownElement.style.fontSize = "50px";
-countdownElement.style.fontWeight = "bold";
-countdownElement.style.zIndex = 333;
-countdownElement.textContent = countdownValue;
-document.body.appendChild(countdownElement);
-
-countdownInterval = setInterval(() => {
-  countdownValue--;
-  countdownElement.textContent = countdownValue;
-  if (countdownValue === 0) {
-    clearInterval(countdownInterval);
-    countdownElement.textContent = "Game Start!!";
-    setTimeout(() => {
-      document.body.removeChild(countdownElement);
-    }, 1000);
-  }
-}, 1000);
 
 function addItem(){
   let index = Math.floor(Math.random() * 2);
@@ -188,7 +163,7 @@ Events.on(engine, "collisionStart", (event) => {
       && collision.bodyA.isItem == false && collision.bodyB.isItem == false) {
       const index = collision.bodyA.index;
       
-      if (index === GRADES.length - 1) {
+      if (index+1 === GRADES.length - 1) {
         // A+ 공이 3개 이상이면 승리 팝업 표시
         aGrades += 1;
         if (aGrades >= 3) {

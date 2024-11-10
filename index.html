@@ -4,6 +4,16 @@
   <title>Grade Merger</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/gh/woowahan-techcamp/woowa-fonts/hanna.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <style>
+    p :lang("ko") { font-family: 'Hanna', sans-serif; }
+    #modalContent p[lang="ko"] {
+    font-family: 'Hanna', sans-serif;
+    color: black; /* 예시용 색상 */
+    font-weight: bold;
+    }
+ </style>
 </head>
 <body>
   <header>
@@ -20,7 +30,7 @@
         <i class="fas fa-play"></i>
         Play
       </button>
-      <button class="tutorial-button">
+      <button class="tutorial-button" id="tutorial-button" onclick="showModal(1)">
         <i class="fas fa-book"></i>
         Tutorial
       </button>
@@ -29,20 +39,48 @@
         Exit
       </button>
     </div>
-
-    <div class="tutorial-popup">
-      <div class="popup-content">
-        <div class="popup-header">
-          <h2>Game Tutorial</h2>
-          <button class="close-button">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <p>Game instructions...</p>
-      </div>
-    </div>
   </div>
+  <!-- 모달 오버레이 -->
+  <div class="modal-overlay" id="modalOverlay"></div>
 
+  <!-- 모달 -->
+  <div class="modal" id="stageModal">
+      <button class="close-button" onclick="closeModal()">&times;</button>
+      <h2 id="modalTitle"></h2>
+      <p id="modalContent"></p>
+  </div>
   <script src="main.js"></script>
+  <script>
+    const stageDescriptions = {
+            1: "<p lang='ko'> 같은 등급인 성적을 합쳐 A+ 등급을 3개 모으세요! <br>"  +
+              " 성적이 빨간 선을 넘어가면 패배합니다. " + 
+              " 스테이지에 따라 다양한 난이도를 즐겨보세요! </p> <p>Combine the same grades to collect three A+ grades! <br>" +
+            "But if your grade goes above the red line, you lose! </p>",
+        };
+    function showModal(stageNum) {
+            const modal = document.getElementById('stageModal');
+            const overlay = document.getElementById('modalOverlay');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+
+            modalTitle.textContent = "Tutorial";
+            modalContent.innerHTML = stageDescriptions[stageNum];
+            
+            overlay.classList.add('active');
+            modal.classList.add('active');
+            
+          
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('stageModal');
+            const overlay = document.getElementById('modalOverlay');
+            
+            modal.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        document.getElementById('modalOverlay').addEventListener('click', closeModal);
+  </script>
 </body>
 </html>
