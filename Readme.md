@@ -1,6 +1,10 @@
 # GradeMerger Game
 # 📚 Grade Merger 성적 합치기 게임
 
+## License 라이센스
+This project makes use of the following open-source projects:
+- **[suika game](https://github.com/kairess/suika-game)**  
+
 ## 실행 방법
 ```
 npm run dev
