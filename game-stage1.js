@@ -38,7 +38,7 @@ const topLine = Bodies.rectangle(310, 150, 620, 2, {
   name: "topLine",
   isStatic: true,
   isSensor: true,
-  render: { fillStyle: "#E6B143" }
+  render: { fillStyle: "red" }
 })
 
 World.add(world, [leftWall, rightWall, ground, topLine]);

@@ -6,37 +6,31 @@
     <title>Stage Selection</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
         body {
-        font-family: 'Righteous', cursive;
-        margin: 0;
-        padding: 0;
-        /* background-image: linear-gradient(to right, #ff6b6b, #ffa500); */
-        background-image: linear-gradient(to right, #48f55f, #3b3ef8);
-        color: #fff;
-        }
-        .stage-body-container {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: white;
-            font-family: Arial, sans-serif;
             font-family: 'Righteous', cursive;
             margin: 0;
             padding: 0;
-            /* background-image: linear-gradient(to right, #ff6b6b, #ffa500); */
+            background-image: linear-gradient(to right, #48f55f, #3b3ef8);
+            color: #fff;
+            overflow-x: hidden; /* 버튼 바운스 시 가로 스크롤 방지 */
+        }
+        .stage-body-container {
+            margin: 0;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background-image: linear-gradient(to right, #48f55f, #3b3ef8);
             color: #fff;
         }
         header {
-            /* background-image: linear-gradient(to right, #ff6b6b, #ffa500); */
-            background-image: linear-gradient(to right, #48f55f, #3b3ef8);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background-image: linear-gradient(to right, #54ff6a, #4447ff);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px 20px;
         }
 
         .stage-container {
@@ -44,8 +38,11 @@
             gap: 2rem;
             justify-content: center;
             align-items: center;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
 
+        
         .stage-button {
             width: 200px;
             height: 100px;
@@ -56,22 +53,55 @@
             font-size: 24px;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(300px);
+            animation: smoothBounce 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            will-change: transform, opacity; /* 성능 최적화 */
         }
+
+        @keyframes smoothBounce {
+            0% {
+                opacity: 0;
+                transform: translateY(300px);
+            }
+            40% {
+                opacity: 1;
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(10px);
+            }
+            75% {
+                transform: translateY(-5px);
+            }
+            90% {
+                transform: translateY(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 각 버튼의 애니메이션 딜레이 */
+        .stage-button:nth-child(1) { animation-delay: 0.2s; }
+        .stage-button:nth-child(2) { animation-delay: 0.4s; }
+        .stage-button:nth-child(3) { animation-delay: 0.6s; }
 
         .stage-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #f0ba4d;
         }
 
-        .stage-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .header-left {
-            display: flex;
-            align-items: center;
+        @keyframes gentleBounce {
+            0%, 100% { 
+                transform: translateY(0); 
+            }
+            50% { 
+                transform: translateY(-10px); 
+            }
         }
 
         .logo {
@@ -80,12 +110,17 @@
         }
 
         .site-title {
-        margin: 0;
-        font-size: 20px;
-        font-weight: bold;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            display: flex;
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        
         }
-
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
         .container {
         display: flex;
         flex-direction: column;
@@ -109,6 +144,94 @@
         .back-button i {
         font-size: 20px;
         }
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.7);
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            width: 80%;
+            max-width: 500px;
+            color: #333;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #333;
+        }
+
+        .start-button {
+            display: none;
+            margin: 20px auto 0;
+            padding: 12px 40px;
+            background-color: #E6B143;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Righteous', cursive;
+        }
+
+        .start-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #f0ba4d;
+        }
+
+        /* 모달 내용 스타일링 */
+        .modal h2 {
+            text-align: center;
+            color: #E6B143;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .modal p {
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
     </style>
 </head>
 <body>
@@ -120,13 +243,61 @@
           <h1 class="site-title">Grade Merger!</h1>
         </div>
     </header>
+    <br>
+    <h1 style="text-align: center;">Select Stage...</h1>
     <div class="stage-body-container">
         <div class="stage-container">
-            <button class="stage-button" onclick="location.href='game-stage1.html'">STAGE 1</button>
-            <button class="stage-button" onclick="location.href='game-stage2.html'">STAGE 2</button>
-            <button class="stage-button" onclick="location.href='game-stage3.html'">STAGE 3</button>
+            <button class="stage-button" onclick="showModal(1)">STAGE 1</button>
+            <button class="stage-button" onclick="showModal(2)">STAGE 2</button>
+            <button class="stage-button" onclick="showModal(3)">STAGE 3</button>
         </div>
     </div>
-    
+    <!-- 모달 오버레이 -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <!-- 모달 -->
+    <div class="modal" id="stageModal">
+        <button class="close-button" onclick="closeModal()">&times;</button>
+        <h2 id="modalTitle"></h2>
+        <p id="modalContent"></p>
+        <button class="start-button" id="startButton">Start</button>
+    </div>
+    <script>
+        const stageDescriptions = {
+            1: "Combine the same grades to collect three A+ grades! But if your grade goes above the red line, you lose!",
+            2: "Stage 2에서는 더 다양한 숫자와 특별한 규칙이 추가됩니다. 전략적으로 숫자를 합쳐보세요!",
+            3: "Stage 3는 가장 도전적인 단계입니다. 시간제한과 특별한 미션이 기다리고 있습니다!"
+        };
+
+        function showModal(stageNum) {
+            const modal = document.getElementById('stageModal');
+            const overlay = document.getElementById('modalOverlay');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+            const startButton = document.getElementById('startButton');
+
+            modalTitle.textContent = `STAGE ${stageNum}`;
+            modalContent.textContent = stageDescriptions[stageNum];
+            startButton.onclick = () => window.location.href = `game-stage${stageNum}.html`;
+
+            overlay.classList.add('active');
+            modal.classList.add('active');
+            
+            startButton.style.display = 'none';
+            setTimeout(() => {
+                startButton.style.display = 'block';
+            }, 500);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('stageModal');
+            const overlay = document.getElementById('modalOverlay');
+            
+            modal.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        document.getElementById('modalOverlay').addEventListener('click', closeModal);
+    </script>
 </body>
 </html>

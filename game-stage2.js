@@ -42,7 +42,7 @@ const topLine = Bodies.rectangle(310, 150, 620, 2, {
   name: "topLine",
   isStatic: true,
   isSensor: true,
-  render: { fillStyle: "#E6B143" },
+  render: { fillStyle: "red" },
   isItem: false,
 })
 
@@ -186,10 +186,9 @@ Events.on(engine, "collisionStart", (event) => {
     //성적일때
     if (collision.bodyA.index === collision.bodyB.index 
       && collision.bodyA.isItem == false && collision.bodyB.isItem == false) {
-      console.log("aa");
       const index = collision.bodyA.index;
       
-      if (index+1 === GRADES.length - 1) {
+      if (index === GRADES.length - 1) {
         // A+ 공이 3개 이상이면 승리 팝업 표시
         aGrades += 1;
         if (aGrades >= 3) {
@@ -244,55 +243,57 @@ Events.on(engine, "collisionStart", (event) => {
         currentItem = collision.bodyB;
         itemIndex = collision.bodyB.index;
       }
-
       
-      if(itemIndex == 0 && index !== '' && gradeIndex !== ''){
-        //충돌된 성적 인덱스
-        console.log("task attack!!")
-        World.remove(world, [collision.bodyA, collision.bodyB]);
-
-        var newGrade = GRADES[gradeIndex];
-        if(gradeIndex >= 1){
-          console.log("grade index " + gradeIndex)
-          newGrade = GRADES[gradeIndex - 1];
-          const newBody = Bodies.circle(
-            collision.collision.supports[0].x,
-            collision.collision.supports[0].y,
-            newGrade.radius,
-            {
-              isGrade: true,
-              isItem: false,
-              render: {
-                sprite: { texture: `${newGrade.name}.png` }
-              },
-              index: gradeIndex - 1,
-            }
-          );
-          World.add(world, newBody);
-        }else{
-          newGrade = GRADES[gradeIndex];
-          const newBody = Bodies.circle(
-            collision.collision.supports[0].x,
-            collision.collision.supports[0].y,
-            newGrade.radius,
-            {
-              isGrade: true,
-              isItem: false,
-              render: {
-                sprite: { texture: `${newGrade.name}.png` }
-              },
-              index: gradeIndex,
-            }
-          );
-          World.add(world, newBody);
-        }
-        
-      }else if(itemIndex == 1 && index !== '' && gradeIndex !== ''){
-        //A+가 아닐때만 폭파
-        if(index !== GRADES.length-1){
+      //해당 grade 가 A 미만일 때만 영향을 받음
+      if(gradeIndex < GRADES.length-2){
+        //task 일 때
+        if(itemIndex == 0 && index !== '' && gradeIndex !== ''){
+          //충돌된 성적 인덱스
+          console.log("task attack!!")
           World.remove(world, [collision.bodyA, collision.bodyB]);
+
+          var newGrade = GRADES[gradeIndex];
+          if(gradeIndex >= 1){
+            console.log("grade index " + gradeIndex)
+            newGrade = GRADES[gradeIndex - 1];
+            const newBody = Bodies.circle(
+              collision.collision.supports[0].x,
+              collision.collision.supports[0].y,
+              newGrade.radius,
+              {
+                isGrade: true,
+                isItem: false,
+                render: {
+                  sprite: { texture: `${newGrade.name}.png` }
+                },
+                index: gradeIndex - 1,
+              }
+            );
+            World.add(world, newBody);
+          }else{
+            newGrade = GRADES[gradeIndex];
+            const newBody = Bodies.circle(
+              collision.collision.supports[0].x,
+              collision.collision.supports[0].y,
+              newGrade.radius,
+              {
+                isGrade: true,
+                isItem: false,
+                render: {
+                  sprite: { texture: `${newGrade.name}.png` }
+                },
+                index: gradeIndex,
+              }
+            );
+            World.add(world, newBody);
+          }
+          
+        }else if(itemIndex == 1 && index !== '' && gradeIndex !== ''){
+          //A 미만일 때만 폭파
+            World.remove(world, [collision.bodyA, collision.bodyB]);
+          
+          
         }
-        
       }
     }
     
