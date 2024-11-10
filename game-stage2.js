@@ -20,18 +20,22 @@ const render = Render.create({
 
 // 지진 효과 함수
 function createEarthquakeEffect(duration = 1000, intensity = 5) {
-  let startTime = Date.now();
+  const startTime = Date.now();
   const originalPositions = {
     leftWall: { x: leftWall.position.x, y: leftWall.position.y },
     rightWall: { x: rightWall.position.x, y: rightWall.position.y },
     ground: { x: ground.position.x, y: ground.position.y }
   };
 
-  const shake = () => {
-    if (Date.now() - startTime < duration) {
-      // 벽과 땅을 랜덤하게 흔들기
-      const offsetX = (Math.random() - 0.5) * intensity;
-      const offsetY = (Math.random() - 0.5) * intensity;
+  function shake() {
+    const elapsed = Date.now() - startTime;
+    if (elapsed < duration) {
+      const progress = elapsed / duration;
+      // 시간이 지날수록 강도가 감소하는 효과
+      const currentIntensity = intensity * (1 - progress);
+      
+      const offsetX = (Math.random() - 0.5) * currentIntensity;
+      const offsetY = (Math.random() - 0.5) * currentIntensity;
 
       Body.setPosition(leftWall, {
         x: originalPositions.leftWall.x + offsetX,
@@ -48,12 +52,13 @@ function createEarthquakeEffect(duration = 1000, intensity = 5) {
 
       requestAnimationFrame(shake);
     } else {
-      // 원래 위치로 복귀
+      // 원래 위치로 복귀 후 지면 상승 시작
       Body.setPosition(leftWall, originalPositions.leftWall);
       Body.setPosition(rightWall, originalPositions.rightWall);
       Body.setPosition(ground, originalPositions.ground);
+      
     }
-  };
+  }
 
   shake();
 }
