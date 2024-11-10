@@ -126,9 +126,9 @@ let aGrades = 0; // A+ 공 개수를 세기 위한 변수
 
 Events.on(engine, "collisionStart", (event) => {
   event.pairs.forEach((collision) => {
-    if (collision.bodyA.index === collision.bodyB.index) {
+    if (collision.bodyA.index === collision.bodyB.index && collision.bodyA.index !== GRADES.length-1) {
       const index = collision.bodyA.index;
-      
+      console.log(index + 1)
       if (index+1 === GRADES.length - 1) {
         // A+ 공이 3개 이상이면 승리 팝업 표시
         aGrades += 1;
@@ -143,8 +143,9 @@ Events.on(engine, "collisionStart", (event) => {
           Engine.clear(engine);
           Render.stop(render);
           Runner.stop(runner);
+          return;
         }
-        return;
+        
       }
       World.remove(world, [collision.bodyA, collision.bodyB]);
 

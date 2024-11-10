@@ -18,6 +18,47 @@ const render = Render.create({
   }
 });
 
+// 지진 효과 함수
+function createEarthquakeEffect(duration = 1000, intensity = 5) {
+  let startTime = Date.now();
+  const originalPositions = {
+    leftWall: { x: leftWall.position.x, y: leftWall.position.y },
+    rightWall: { x: rightWall.position.x, y: rightWall.position.y },
+    ground: { x: ground.position.x, y: ground.position.y }
+  };
+
+  const shake = () => {
+    if (Date.now() - startTime < duration) {
+      // 벽과 땅을 랜덤하게 흔들기
+      const offsetX = (Math.random() - 0.5) * intensity;
+      const offsetY = (Math.random() - 0.5) * intensity;
+
+      Body.setPosition(leftWall, {
+        x: originalPositions.leftWall.x + offsetX,
+        y: originalPositions.leftWall.y + offsetY
+      });
+      Body.setPosition(rightWall, {
+        x: originalPositions.rightWall.x + offsetX,
+        y: originalPositions.rightWall.y + offsetY
+      });
+      Body.setPosition(ground, {
+        x: originalPositions.ground.x + offsetX,
+        y: originalPositions.ground.y + offsetY
+      });
+
+      requestAnimationFrame(shake);
+    } else {
+      // 원래 위치로 복귀
+      Body.setPosition(leftWall, originalPositions.leftWall);
+      Body.setPosition(rightWall, originalPositions.rightWall);
+      Body.setPosition(ground, originalPositions.ground);
+    }
+  };
+
+  shake();
+}
+
+
 const world = engine.world;
 
 const leftWall = Bodies.rectangle(15, 395, 30, 790, {
@@ -58,7 +99,10 @@ let interval = null;
 let currentItem = null;
 
 function addItem(){
-  let index = Math.floor(Math.random() * 2);
+  let index = 0;
+  if(Math.random() < 0.4){
+    index = 1;
+  }
   const item = ITEMS[index];
   let body = Bodies.circle(300, 50, item.radius, {
     index: index,
@@ -134,7 +178,7 @@ window.onkeydown = (event) => {
       setTimeout(() => {
         //20퍼센트 확률
       
-        if(Math.random() < 0.3){
+        if(Math.random() < 0.25){
           addItem();
         }else{
           addGrade();
@@ -160,7 +204,7 @@ Events.on(engine, "collisionStart", (event) => {
   event.pairs.forEach((collision) => { 
     //성적일때
     if (collision.bodyA.index === collision.bodyB.index 
-      && collision.bodyA.isItem == false && collision.bodyB.isItem == false) {
+      && collision.bodyA.isItem == false && collision.bodyB.isItem == false && collision.bodyA.index !== GRADES.length-1) {
       const index = collision.bodyA.index;
       
       if (index+1 === GRADES.length - 1) {
@@ -178,8 +222,9 @@ Events.on(engine, "collisionStart", (event) => {
           Engine.clear(engine);
           Render.stop(render);
           Runner.stop(runner);
+          return;
         }
-        return;
+        
       }
       World.remove(world, [collision.bodyA, collision.bodyB]);
 
@@ -265,9 +310,10 @@ Events.on(engine, "collisionStart", (event) => {
         }else if(itemIndex == 1 && index !== '' && gradeIndex !== ''){
           //A 미만일 때만 폭파
             World.remove(world, [collision.bodyA, collision.bodyB]);
-          
-          
+            // 폭탄 충돌시 지진 효과 추가
+            createEarthquakeEffect(1000, 6);
         }
+        
       }
     }
     
@@ -275,9 +321,11 @@ Events.on(engine, "collisionStart", (event) => {
       !disableAction &&
       (collision.bodyA.name === "topLine" || collision.bodyB.name === "topLine")) {
       alert("Game over");
+      clearInterval(earthquakeTimer);
     }
   });
 });
+
 
 
 
