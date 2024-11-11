@@ -54,12 +54,17 @@
     <div class="win-popup" id="winPopup" hidden>
       <div class="popup-content">
         <div class="popup-header">
-          <h2>Win!!</h2>
+          <h2>Congratulations!!</h2>
           <button type="button" onclick="closePopup();" class="close-button">
             <i class="fas fa-times"></i>
           </button>
         </div>
-        <p>your winner.</p>
+        <div class=win-container>
+          <p>You've cleared all the stages!! Your Winner!!</p>
+          <button type="button" class="next-button" onclick="window.location.href = 'index.html'" >
+              exit
+          </button>
+        </div>
       </div>
     </div>
   <!-- <script src="/game.js"></script> -->

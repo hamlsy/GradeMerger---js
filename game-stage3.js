@@ -158,19 +158,19 @@ const world = engine.world;
 
 const leftWall = Bodies.rectangle(15, 395, 30, 790, {
   isStatic: true,
-  render: { fillStyle: "#E6B143" },
+  render: { fillStyle: "#4E3629" },
   isItem: false,
 });
 
 const rightWall = Bodies.rectangle(605, 395, 30, 790, {
   isStatic: true,
-  render: { fillStyle: "#E6B143" },
+  render: { fillStyle: "#4E3629" },
   isItem: false,
 });
 
 const ground = Bodies.rectangle(310, 820, 620, 60, {
   isStatic: true,
-  render: { fillStyle: "#E6B143" },
+  render: { fillStyle: "#4E3629" },
   isItem: false,
 });
 
