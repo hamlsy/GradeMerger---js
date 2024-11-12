@@ -37,8 +37,11 @@ header {
 }
 
 .container {
+  position: relative;
+  top: -95px;
   display: flex;
   flex-direction: column;
+  padding: 0px;
   align-items: center;
   justify-content: center;
   height: calc(100vh - 60px); /* 헤더 높도 제외 */
@@ -153,3 +156,4 @@ header {
   line-height: 1.6;
   margin-bottom: 25px;
 }
+

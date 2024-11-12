@@ -12,3 +12,4 @@ exitButton.addEventListener('click', () => {
     window.close();
   }
 });
+

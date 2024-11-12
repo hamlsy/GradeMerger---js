@@ -1,0 +1,319 @@
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+
+body {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  /* background: #F2EDF0; */
+}
+
+.game-title-container {
+  /* overflow: hidden; */
+  height: 170px;
+  padding-top: 20px;
+  display: inline-block;
+  position: relative;
+  top: 80px;
+}
+
+.letter {
+  display: inline-block;
+  /* font-family: 'Varela Round', sans-serif; */
+  font-family: 'Righteous', cursive;
+  font-size: 120px;
+  color: #282828;
+  -webkit-text-stroke: 5px #282828;
+  padding: 10px;
+  position: relative;
+  z-index: 1;
+  top: -12px;
+  line-height: 120px;
+  top: -12px;
+  margin-right: -10px;
+  -webkit-transform: translate3d(0, 90px, 0);
+  -moz-transform: translate3d(0, 90px, 0);
+  -ms-transform: translate3d(0, 90px, 0);
+  transform: translate3d(0, 90px, 0);
+  /* 130 */
+}
+
+.g:after {
+  content: "G";
+  font-size: 140px;
+}
+
+.r:after {
+  content: "R";
+  font-size: 140px;
+}
+
+.a:after {
+  content: "A";
+  font-size: 140px;
+}
+
+.d:after {
+  content: "D";
+  font-size: 140px;
+}
+
+.e:after {
+  content: "E";
+  font-size: 140px;
+}
+
+.m:after {
+  content: "M";
+  font-size: 140px;
+}
+
+.e:after {
+  content: "E";
+  font-size: 140px;
+}
+
+.g:after,
+.r:after,
+.a:after,
+.e:after,
+.d:after,
+.m:after,
+.r:after {
+  position: absolute;
+  left: 0;
+  top: 0px;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  transition: all 1s;
+  color: white;
+  -webkit-text-stroke: 5px #282828;
+  opacity: 1;
+  z-index: 100;
+}
+
+.letter:nth-child(1) {
+  animation-delay: 1.1s;
+  -webkit-animation-delay: 1.1s;
+}
+
+.letter:nth-child(1):after {
+  animation-delay: 2.7s;
+  -webkit-animation-delay: 2.7s;
+}
+
+.letter:nth-child(2) {
+  animation-delay: 1.2s;
+  -webkit-animation-delay: 1.2s;
+}
+
+.letter:nth-child(2):after {
+  animation-delay: 2.9s;
+  -webkit-animation-delay: 2.9s;
+}
+
+.letter:nth-child(3) {
+  animation-delay: 1.3s;
+  -webkit-animation-delay: 1.3s;
+}
+
+.letter:nth-child(3):after {
+  animation-delay: 3.1s;
+  -webkit-animation-delay: 3.1s;
+}
+
+.letter:nth-child(4) {
+  animation-delay: 1.4s;
+  -webkit-animation-delay: 1.4s;
+}
+
+.letter:nth-child(4):after {
+  animation-delay: 3.3s;
+  -webkit-animation-delay: 3.3s;
+}
+
+.letter:nth-child(5) {
+  animation-delay: 1.5s;
+  -webkit-animation-delay: 1.5s;
+}
+
+.letter:nth-child(5):after {
+  animation-delay: 3.5s;
+  -webkit-animation-delay: 3.5s;
+}
+
+.letter:nth-child(6) {
+  animation-delay: 1.6s;
+  -webkit-animation-delay: 1.6s;
+}
+
+.letter:nth-child(6):after {
+  animation-delay: 3.7s;
+  -webkit-animation-delay: 3.7s;
+}
+
+.letter:nth-child(7) {
+  animation-delay: 1.7s;
+  -webkit-animation-delay: 1.7s;
+}
+
+.letter:nth-child(7):after {
+  animation-delay: 3.9s;
+  -webkit-animation-delay: 3.9s;
+}
+
+.letter:nth-child(8) {
+    animation-delay: 1.9s;
+    -webkit-animation-delay: 1.9s;
+}
+  
+  .letter:nth-child(8):after {
+    animation-delay: 4.3s;
+    -webkit-animation-delay: 4.3s;
+}
+
+.letter:nth-child(9) {
+    animation-delay: 2s;
+    -webkit-animation-delay: 2s;
+}
+  
+  .letter:nth-child(9):after {
+    animation-delay: 4.5s;
+    -webkit-animation-delay: 4.5s;
+}
+
+.letter:nth-child(10) {
+    animation-delay: 2.1s;
+    -webkit-animation-delay: 2.1s;
+}
+  
+  .letter:nth-child(10):after {
+    animation-delay: 4.7s;
+    -webkit-animation-delay: 4.7s;
+}
+
+.letter:nth-child(11) {
+    animation-delay: 2.2s;
+    -webkit-animation-delay: 2.2s;
+}
+  
+  .letter:nth-child(11):after {
+    animation-delay: 4.9s;
+    -webkit-animation-delay: 4.9s;
+}
+
+.letter:nth-child(12) {
+    animation-delay: 2.3s;
+    -webkit-animation-delay: 2.3s;
+}
+  
+  .letter:nth-child(12):after {
+    animation-delay: 5.1s;
+    -webkit-animation-delay: 5.1s;
+}
+
+.letter {
+  -webkit-animation: show 0.3s 4s 1 ease-out forwards;
+  -moz-animation: show 0.3s 4s 1 ease-out forwards;
+  -o-animation: show 0.3s 4s 1 ease-out forwards;
+  animation: show 0.3s 4s 1 ease-out forwards;
+}
+
+.letter:after {
+  -webkit-animation: up 1s 1 ease-out forwards;
+  -moz-animation: up 1s 1 ease-out forwards;
+  -o-animation: up 1s 1 ease-out forwards;
+  animation: up 1s 1 ease-out forwards;
+}
+
+@keyframes show {
+  0% {
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0px, 0);
+    -moz-transform: translate3d(0, 0px, 0);
+    -ms-transform: translate3d(0, 0px, 0);
+    transform: translate3d(0, 0px, 0);
+  }
+}
+
+@keyframes up {
+  0% {
+  }
+  30% {
+    -webkit-transform: translate3d(0, -7px, 0);
+    -moz-transform: translate3d(0, -7px, 0);
+    -ms-transform: translate3d(0, -7px, 0);
+    transform: translate3d(0, -7px, 0);
+  }
+  60% {
+    -webkit-transform: translate3d(0, -4px, 0);
+    -moz-transform: translate3d(0, -4px, 0);
+    -ms-transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -4px, 0);
+  }
+  80% {
+    -webkit-transform: translate3d(0, -7px, 0);
+    -moz-transform: translate3d(0, -7px, 0);
+    -ms-transform: translate3d(0, -7px, 0);
+    transform: translate3d(0, -7px, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+    -moz-transform: translate3d(0, -5px, 0);
+    -ms-transform: translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, -7px, 0);
+    -moz-transform: translate3d(0, -7px, 0);
+    -ms-transform: translate3d(0, -7px, 0);
+    transform: translate3d(0, -7px, 0);
+  }
+}
+
+@-webkit-keyframes show {
+  0% {
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0px, 0);
+    -moz-transform: translate3d(0, 0px, 0);
+    -ms-transform: translate3d(0, 0px, 0);
+    transform: translate3d(0, 0px, 0);
+  }
+}
+
+@-webkit-keyframes up {
+  0% {
+  }
+  30% {
+    -webkit-transform: translate3d(0, -7px, 0);
+    -moz-transform: translate3d(0, -7px, 0);
+    -ms-transform: translate3d(0, -7px, 0);
+    transform: translate3d(0, -7px, 0);
+  }
+  60% {
+    -webkit-transform: translate3d(0, -4px, 0);
+    -moz-transform: translate3d(0, -4px, 0);
+    -ms-transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -4px, 0);
+  }
+  80% {
+    -webkit-transform: translate3d(0, -7px, 0);
+    -moz-transform: translate3d(0, -7px, 0);
+    -ms-transform: translate3d(0, -7px, 0);
+    transform: translate3d(0, -7px, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+    -moz-transform: translate3d(0, -5px, 0);
+    -ms-transform: translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, -7px, 0);
+    -moz-transform: translate3d(0, -7px, 0);
+    -ms-transform: translate3d(0, -7px, 0);
+    transform: translate3d(0, -7px, 0);
+  }
+}

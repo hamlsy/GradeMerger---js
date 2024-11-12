@@ -1,0 +1,189 @@
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+
+@mixin transform($value){
+  -webkit-transform: ($value);
+     -moz-transform: ($value);
+      -ms-transform: ($value);
+          transform: ($value);
+}
+@mixin transition($value){
+  -webkit-transition: ($value);
+     -moz-transition: ($value);
+      -ms-transition: ($value);
+          transition: ($value);
+}
+
+$blue: #4285f4;
+
+$fontsize: 140px;
+$color: #282828;
+body{
+  width: 100%;
+  height: 100%;
+  text-align: center; 
+  background: #F2EDF0;
+}
+.game-title-container{
+  overflow: hidden;
+  height: 130px;
+  padding-top: 30px;
+  display:inline-block;
+  position: relative;
+  top: 150px;
+  
+}
+.letter{
+  display: inline-block;
+  font-family: 'Varela Round', sans-serif;
+  font-size: $fontsize;
+  color: $color;
+  -webkit-text-stroke: 5px $color;
+  position: relative;
+  z-index: 1;
+  top: 0px;
+  line-height: 120px;
+  top: 0px;
+  margin-right: -10px;
+  @include transform(translate3d(0, 130px,0));
+}
+
+.g{
+  &:after{
+    content:"G";
+    font-size: $fontsize;
+  }
+}
+.r{
+  &:after{
+    content:"R";
+    font-size: $fontsize;
+  }
+}
+.a{
+  &:after{
+    content:"A";
+    font-size: $fontsize;
+  }
+}
+.d{
+  &:after{
+    content:"D";
+    font-size: $fontsize;
+  }
+}
+.e{
+  &:after{
+    content:"E";
+    font-size: $fontsize;
+  }
+}
+.m{
+  &:after{
+    content:"M";
+    font-size: $fontsize;
+  }
+}
+.e{
+  &:after{
+    content:"E";
+    font-size: $fontsize;
+  }
+}
+
+
+.g, .r, .a, .e, .d, .m, .r{
+  &:after{
+    position: absolute;
+    left: 0;
+    top: 0px;
+    @include transition(all 1s);
+    color: white;
+    -webkit-text-stroke: 5px $color;
+    opacity: 1;
+    z-index: 100;
+  }
+}
+
+
+$delayletters: 0.1s;
+@for $i from 1 through 7{
+  .letter:nth-child(#{$i}){
+    animation-delay:(#{1+$i*$delayletters}); 
+    -webkit-animation-delay:(#{1+$i*$delayletters});
+    &:after{
+      animation-delay:(#{2.5+$i*0.2s}); 
+      -webkit-animation-delay:(#{2.5+$i*0.2s});
+    }
+  }
+}
+  
+
+$timeshow: 0.3s;
+$timeup: 1s;
+.letter {
+  -webkit-animation: show $timeshow 4s 1 ease-out forwards; 
+  -moz-animation:    show $timeshow 4s 1 ease-out forwards; 
+  -o-animation:      show $timeshow 4s 1 ease-out forwards; 
+  animation:         show $timeshow 4s 1 ease-out forwards;  
+}
+.letter:after {
+  -webkit-animation: up $timeup  1 ease-out forwards; 
+  -moz-animation:    up $timeup  1 ease-out forwards; 
+  -o-animation:      up $timeup  1 ease-out forwards; 
+  animation:         up $timeup  1 ease-out forwards;  
+}
+
+
+
+@keyframes show {
+  0% {      
+   }
+  100% { 
+    @include transform(translate3d(0, 0px,0));
+   }  
+}
+@keyframes up {
+  0% {      
+   }
+  30% { 
+    @include transform(translate3d(0, -7px,0));
+   }
+  60% { 
+    @include transform(translate3d(0, -4px,0));
+   }
+  80% { 
+    @include transform(translate3d(0, -7px,0));
+   }
+  90% { 
+    @include transform(translate3d(0, -5px,0));
+   }
+  100% { 
+    @include transform(translate3d(0, -7px,0));
+   }
+}
+@-webkit-keyframes show {
+  0% {      
+   }
+  100% { 
+    @include transform(translate3d(0, 0px,0));
+   }  
+}
+@-webkit-keyframes up {
+  0% {      
+   }
+  30% { 
+    @include transform(translate3d(0, -7px,0));
+   }
+  60% { 
+    @include transform(translate3d(0, -4px,0));
+   }
+  80% { 
+    @include transform(translate3d(0, -7px,0));
+   }
+  90% { 
+    @include transform(translate3d(0, -5px,0));
+   }
+  100% { 
+    @include transform(translate3d(0, -7px,0));
+   }
+}
