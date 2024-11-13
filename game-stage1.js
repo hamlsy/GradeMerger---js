@@ -13,7 +13,7 @@ const render = Render.create({
     background: "white",
     width: 620,
     height: 850,
-    textAlign: "center"
+    textAlign: "center",
   }
 });
 

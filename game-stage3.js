@@ -31,12 +31,40 @@ timerDiv.style.zIndex = '1000';
 document.body.appendChild(timerDiv);
 
 let timeLeft = 20;
-let groundHeight = 820; // 초기 지면 높이
+var groundHeight = 820; // 초기 지면 높이
 
 
 let isEarthquaking = false; // 지진/지면 상승 진행 중 여부
 const GROUND_RISE_AMOUNT = 20; // 한 번에 올라갈 높이
 const GROUND_RISE_DURATION = 2000; // 지면 상승에 걸리는 시간 (ms)
+
+const world = engine.world;
+
+const leftWall = Bodies.rectangle(15, 395, 30, 990, {
+  isStatic: true,
+  render: { fillStyle: "#4E3629" },
+  isItem: false,
+});
+
+const rightWall = Bodies.rectangle(605, 395, 30, 990, {
+  isStatic: true,
+  render: { fillStyle: "#4E3629" },
+  isItem: false,
+});
+
+var ground = Bodies.rectangle(310, 820, 620, 60, {
+  isStatic: true,
+  render: { fillStyle: "#4E3629" },
+  isItem: false,
+});
+
+const topLine = Bodies.rectangle(310, 150, 620, 2, {
+  name: "topLine",
+  isStatic: true,
+  isSensor: true,
+  render: { fillStyle: "red" },
+  isItem: false,
+})
 
 // 타이머 업데이트 함수
 function updateTimer() {
@@ -51,6 +79,7 @@ function createEarthquakeEffect(duration = 1000, intensity = 5) {
     rightWall: { x: rightWall.position.x, y: rightWall.position.y },
     ground: { x: ground.position.x, y: ground.position.y }
   };
+  
 
   function shake() {
     const elapsed = Date.now() - startTime;
@@ -91,11 +120,14 @@ function createEarthquakeEffect(duration = 1000, intensity = 5) {
 // 부드러운 지면 상승 함수
 function smoothGroundRise() {
   const startHeight = groundHeight;
+  // const targetHeight = groundHeight - GROUND_RISE_AMOUNT;
   const targetHeight = groundHeight - GROUND_RISE_AMOUNT;
+  
   const startTime = Date.now();
    // 벽의 초기 위치 저장
    const leftWallStartY = leftWall.position.y;
    const rightWallStartY = rightWall.position.y;
+
   function animate() {
     const currentTime = Date.now();
     const elapsed = currentTime - startTime;
@@ -105,25 +137,15 @@ function smoothGroundRise() {
     const easeProgress = 1 - (1 - progress) * (1 - progress);
     
     const currentHeight = startHeight - (GROUND_RISE_AMOUNT * easeProgress);
-    const wallOffset = (GROUND_RISE_AMOUNT * easeProgress) / 2;
 
     // 땅과 벽 위치 업데이트
+
     Body.setPosition(ground, {
       x: ground.position.x,
-      y: currentHeight
+      y: currentHeight 
     });
 
-    // 벽도 함께 이동
-    Body.setPosition(leftWall, {
-      x: leftWall.position.x,
-      y: leftWallStartY - wallOffset
-    });
     
-    Body.setPosition(rightWall, {
-      x: rightWall.position.x,
-      y: rightWallStartY - wallOffset
-    });
-
     if (progress < 1) {
       requestAnimationFrame(animate);
     } else {
@@ -154,33 +176,7 @@ function startEarthquakeTimer() {
 
   return timer;
 }
-const world = engine.world;
 
-const leftWall = Bodies.rectangle(15, 395, 30, 790, {
-  isStatic: true,
-  render: { fillStyle: "#4E3629" },
-  isItem: false,
-});
-
-const rightWall = Bodies.rectangle(605, 395, 30, 790, {
-  isStatic: true,
-  render: { fillStyle: "#4E3629" },
-  isItem: false,
-});
-
-const ground = Bodies.rectangle(310, 820, 620, 60, {
-  isStatic: true,
-  render: { fillStyle: "#4E3629" },
-  isItem: false,
-});
-
-const topLine = Bodies.rectangle(310, 150, 620, 2, {
-  name: "topLine",
-  isStatic: true,
-  isSensor: true,
-  render: { fillStyle: "red" },
-  isItem: false,
-})
 // 폭탄 충돌 효과 (더 짧고 약한 지진)
 function createBombEffect() {
   const startTime = Date.now();
@@ -313,7 +309,7 @@ window.onkeydown = (event) => {
       setTimeout(() => {
         //20퍼센트 확률
       
-        if(Math.random() < 0.3){
+        if(Math.random() < 0.2){
           addItem();
         }else{
           addGrade();
