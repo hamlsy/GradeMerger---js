@@ -140,11 +140,14 @@ function smoothGroundRise() {
 
     // 땅과 벽 위치 업데이트
 
-    Body.setPosition(ground, {
-      x: ground.position.x,
-      y: currentHeight 
-    });
+    increaseHeightUpwards(ground, 0.2)
 
+    // Body.setPosition(ground, {
+    //   x: ground.position.x,
+    //   y: currentHeight 
+    // });
+    
+    
     
     if (progress < 1) {
       requestAnimationFrame(animate);
@@ -156,7 +159,26 @@ function smoothGroundRise() {
 
   animate();
 }
+function increaseHeightUpwards(body, additionalHeight) {
+  // 기존 크기와 위치
+  const originalHeight = body.bounds.max.y - body.bounds.min.y;
+  const newHeight = originalHeight + additionalHeight;
+  
+  // 스케일 계산
+  const scaleY = newHeight / originalHeight;
 
+  // 현재 위치를 기준으로 새로운 위치 계산 (위로 늘어나기 위해 아래로 보정)
+  const positionAdjustment = additionalHeight / 2;
+
+  // 위치 업데이트
+  Body.setPosition(body, {
+    x: body.position.x,
+    y: body.position.y - positionAdjustment
+  });
+
+  // 스케일 업데이트
+  Body.scale(body, 1, scaleY);
+}
 
 // 20초마다 실행되는 지진 + 땅 상승 효과
 function startEarthquakeTimer() {
