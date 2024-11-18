@@ -5,7 +5,12 @@
 This project makes use of the following open-source projects:
 - **[suika game](https://github.com/kairess/suika-game)**  
 
-## 실행 방법
+## 실행 방법 how to play
+
+go to [https://hamlsy.github.io/GradeMerger-js/]
+
+or 
+
 ```
 npm run dev
 ```
