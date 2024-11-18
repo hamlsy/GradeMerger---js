@@ -1,6 +1,6 @@
 // import { Bodies, Body, Engine, Events, Render, Runner, World } from "matter-js";
 const { Bodies, Body, Engine, Events, Render, Runner, World } = Matter;
-import { GRADES_BASE } from "./grades";
+import { GRADES_BASE } from "./grades.js";
 
 let GRADES = GRADES_BASE;
 
