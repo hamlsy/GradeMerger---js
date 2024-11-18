@@ -1,8 +1,9 @@
 // import { Bodies, Body, Engine, Events, Render, Runner, World } from "matter-js";
 const { Bodies, Body, Engine, Events, Render, Runner, World } = Matter;
-import { GRADES_BASE } from "./grades";
-import { ITEMS_BASE } from "./items";
+import { GRADES_BASE } from "./grades.js";
+import { ITEMS_BASE } from "./items.js";
 // import "./dark.css";
+import GamePopupController from "./gamePopupController.js";
 
 let GRADES = GRADES_BASE;
 let ITEMS = ITEMS_BASE;
@@ -219,15 +220,14 @@ Events.on(engine, "collisionStart", (event) => {
         aGrades += 1;
         if (aGrades >= 3) {
           console.log("win!!!!");
-          const winPopup = document.getElementById("winPopup");
-          const gameWindow = document.getElementById("gameWindow");
-          winPopup.style.display = "block";
-
           World.remove(world, [leftWall, rightWall, ground, topLine]);
           // Render와 Engine을 중지
           Engine.clear(engine);
           Render.stop(render);
           Runner.stop(runner);
+
+          const popupController = new GamePopupController();
+          popupController.showWinPopup();
           return;
         }
         

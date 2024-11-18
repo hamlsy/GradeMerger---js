@@ -30,43 +30,57 @@
   <!--  -->
   <canvas id="gameWindow"></canvas>
   
-  <div class="game-over-popup">
-    <div class="popup-content">
-      <div class="popup-header">
-        <h2>Game Over</h2>
-        <button class="close-button">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <p>You've reached the game over condition.</p>
+  <!-- Win Popup HTML -->
+<div class="win-popup" id="winPopup">
+  <div class="popup-content">
+    <button type="button" onclick="closeWinPopup();" class="close-button">
+      <i class="fas fa-times"></i>
+    </button>
+    <h2>
+      <i class="fas fa-trophy"></i> 
+      Stage Clear!
+    </h2>
+    <div class="win-container">
+      <p>Congratulations!</p>
+      <p>You've completed All stage! Your Winner!!</p>
+      <button type="button" class="next-button" onclick="goToNextStage()">
+        exit
+        <i class="fas fa-arrow-right icon"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+    <!-- 게임 오버 팝업 -->
+  <div class="popup-overlay game-over-popup">
+    <div class="popup">
+      <h2 class="popup-title">Game Over!</h2>
       <div class="button-container">
-        <button class="retry-button">
-          <i class="fas fa-redo"></i>
-          Retry
+        <button class="popup-button retry-button">
+          <i class="fas fa-redo"></i> Retry
         </button>
-        <button class="main-menu-button">
-          <i class="fas fa-home"></i>
-          Main Menu
+        <button class="popup-button quit-button">
+          <i class="fas fa-times"></i> Quit
         </button>
       </div>
     </div>
   </div>
-    <div class="win-popup" id="winPopup" hidden>
-      <div class="popup-content">
-        <div class="popup-header">
-          <h2>Congratulations!!</h2>
-          <button type="button" onclick="closePopup();" class="close-button">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <div class=win-container>
-          <p>You've cleared all the stages!! Your Winner!!</p>
-          <button type="button" class="next-button" onclick="window.location.href = 'index.html'" >
-              exit
-          </button>
-        </div>
+
+  <!-- 나가기 확인 팝업 -->
+  <div class="popup-overlay quit-confirm-popup">
+    <div class="popup">
+      <h2 class="popup-title">Quit Game?</h2>
+      <div class="button-container">
+        <button class="popup-button quit-button" id="confirmQuit">
+          <i class="fas fa-sign-out-alt"></i> Quit
+        </button>
+        <button class="popup-button cancel-button" id="cancelQuit">
+          <i class="fas fa-times"></i> Cancel
+        </button>
       </div>
     </div>
+  </div>
+
   <!-- <script src="/game.js"></script> -->
   <script>
     function closePopup(){
@@ -110,6 +124,88 @@
 
       updateCountdown();
     });
+    // 뒤로가기 버튼 이벤트 처리
+    document.querySelector('.back-button').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector('.quit-confirm-popup').classList.add('active');
+    });
+
+    // 게임오버 팝업 표시 함수
+    function showGameOver() {
+      document.querySelector('.game-over-popup').classList.add('active');
+    }
+
+    // 취소 버튼 처리
+    document.getElementById('cancelQuit').addEventListener('click', function() {
+      document.querySelector('.quit-confirm-popup').classList.remove('active');
+    });
+
+    // 나가기 확인 버튼 처리
+    document.getElementById('confirmQuit').addEventListener('click', function() {
+      window.location.href = 'game-select.html';
+    });
+
+    // 게임오버 팝업의 retry 버튼 처리
+    document.querySelector('.game-over-popup .retry-button').addEventListener('click', function() {
+      location.reload();
+    });
+
+    // 게임오버 팝업의 quit 버튼 처리
+    document.querySelector('.game-over-popup .quit-button').addEventListener('click', function() {
+      window.location.href = 'game-select.html';
+    });
+
+    // 승리 팝업 표시 함수
+    function showWinPopup() {
+      const winPopup = document.getElementById('winPopup');
+      winPopup.classList.add('show');
+      createFireworks();
+    }
+
+    // 승리 팝업 닫기
+    function closeWinPopup() {
+      const winPopup = document.getElementById('winPopup');
+      winPopup.classList.remove('show');
+    }
+
+    // 다음 스테이지로 이동
+    function goToNextStage() {
+      window.location.href = 'index.html';
+    }
+
+    // 폭죽 효과 생성
+    function createFireworks() {
+      const popup = document.querySelector('.win-popup');
+      
+      function createFirework() {
+        const firework = document.createElement('div');
+        firework.className = 'firework';
+        
+        // 랜덤 위치와 색상 설정
+        const colors = ['#ffd700', '#ff4444', '#44ff44', '#4444ff'];
+        const left = Math.random() * 100;
+        firework.style.left = `${left}%`;
+        firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        popup.appendChild(firework);
+        
+        // 애니메이션 완료 후 요소 제거
+        firework.addEventListener('animationend', () => {
+          firework.remove();
+        });
+      }
+      
+      // 여러 개의 폭죽 생성
+      let fireworksCount = 0;
+      const fireworksInterval = setInterval(() => {
+        createFirework();
+        fireworksCount++;
+        
+        if (fireworksCount >= 15) {
+          clearInterval(fireworksInterval);
+        }
+      }, 300);
+    }
   </script>
 </body>
 

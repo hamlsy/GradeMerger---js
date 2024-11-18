@@ -1,8 +1,9 @@
 // import { Bodies, Body, Engine, Events, Render, Runner, World } from "matter-js";
 const { Bodies, Body, Engine, Events, Render, Runner, World } = Matter;
-import { GRADES_BASE } from "./grades";
-import { ITEMS_BASE } from "./items";
+import { GRADES_BASE } from "./grades.js";
+import { ITEMS_BASE } from "./items.js";
 // import "./dark.css";
+import GamePopupController from "./gamePopupController.js";
 
 let GRADES = GRADES_BASE;
 let ITEMS = ITEMS_BASE;
@@ -183,7 +184,7 @@ function increaseHeightUpwards(body, additionalHeight) {
 
 // 20초마다 실행되는 지진 + 땅 상승 효과
 function startEarthquakeTimer() {
-  timeLeft = 2;
+  timeLeft = 20;
   updateTimer();
 
   const timer = setInterval(() => {
@@ -193,7 +194,7 @@ function startEarthquakeTimer() {
     if (timeLeft <= 0 && !isEarthquaking) {
       isEarthquaking = true;
       createEarthquakeEffect(2000, 8);
-      timeLeft = 2;
+      timeLeft = 20;
     }
   }, 1000);
 
@@ -365,16 +366,13 @@ Events.on(engine, "collisionStart", (event) => {
         // A+ 공이 3개 이상이면 승리 팝업 표시
         aGrades += 1;
         if (aGrades >= 3) {
-          console.log("win!!!!");
-          const winPopup = document.getElementById("winPopup");
-          const gameWindow = document.getElementById("gameWindow");
-          winPopup.style.display = "block";
-
           World.remove(world, [leftWall, rightWall, ground, topLine]);
           // Render와 Engine을 중지
           Engine.clear(engine);
           Render.stop(render);
           Runner.stop(runner);
+          const popupController = new GamePopupController();
+          popupController.showWinPopup();
           return;
         }
         
@@ -401,7 +399,6 @@ Events.on(engine, "collisionStart", (event) => {
     }
     //아이템일때
     else if(collision.bodyA.isItem == true || collision.bodyB.isItem == true){
-      console.log("bb");
       var index = '';
       var gradeIndex = '';
       var itemIndex = '';
