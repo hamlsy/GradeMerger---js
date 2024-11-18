@@ -112,10 +112,6 @@ export default class GamePopupController {
       window.location.href = 'game-select.html';
     }
   
-    // 다음 스테이지로 이동
-    goToNextStage() {
-      window.location.href = 'game-stage2.html';
-    }
   }
   
   // 팝업 컨트롤러 인스턴스 생성
