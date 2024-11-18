@@ -1,7 +1,8 @@
-import { Bodies, Body, Engine, Events, Render, Runner, World } from "matter-js";
+// import { Bodies, Body, Engine, Events, Render, Runner, World } from "matter-js";
+const { Bodies, Body, Engine, Events, Render, Runner, World } = Matter;
 import { GRADES_BASE } from "./grades";
 import { ITEMS_BASE } from "./items";
-import "./dark.css";
+// import "./dark.css";
 
 let GRADES = GRADES_BASE;
 let ITEMS = ITEMS_BASE;

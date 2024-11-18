@@ -1,11 +1,11 @@
 const ITEMS_BASE = [
     {
-      name: "base/task",
+      name: "./public/base/task",
       radius: 100 / 2,
       isItem: true,
     },
     {
-      name: "base/bomb",
+      name: "./public/base/bomb",
       radius: 100 / 2,
       isItem: true,
     },
