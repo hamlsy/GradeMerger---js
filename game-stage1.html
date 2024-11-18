@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <meta charset="UTF-8">
   <!-- Font Awesome CDN -->
+   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -69,7 +70,38 @@
         </div>
       </div>
     </div>
+    <!-- 게임 오버 팝업 -->
+  <div class="popup-overlay game-over-popup">
+    <div class="popup">
+      <h2 class="popup-title">Game Over!</h2>
+      <div class="button-container">
+        <button class="popup-button retry-button">
+          <i class="fas fa-redo"></i> Retry
+        </button>
+        <button class="popup-button quit-button">
+          <i class="fas fa-times"></i> Quit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 나가기 확인 팝업 -->
+  <div class="popup-overlay quit-confirm-popup">
+    <div class="popup">
+      <h2 class="popup-title">Quit Game?</h2>
+      <div class="button-container">
+        <button class="popup-button quit-button" id="confirmQuit">
+          <i class="fas fa-sign-out-alt"></i> Quit
+        </button>
+        <button class="popup-button cancel-button" id="cancelQuit">
+          <i class="fas fa-times"></i> Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- <script src="/game.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/matter-js"></script>
   <script>
     function closePopup(){
       const winPopup = document.getElementById("winPopup");
@@ -111,6 +143,37 @@
       }
 
       updateCountdown();
+    });
+
+    // 뒤로가기 버튼 이벤트 처리
+    document.querySelector('.back-button').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector('.quit-confirm-popup').classList.add('active');
+    });
+
+    // 게임오버 팝업 표시 함수
+    function showGameOver() {
+      document.querySelector('.game-over-popup').classList.add('active');
+    }
+
+    // 취소 버튼 처리
+    document.getElementById('cancelQuit').addEventListener('click', function() {
+      document.querySelector('.quit-confirm-popup').classList.remove('active');
+    });
+
+    // 나가기 확인 버튼 처리
+    document.getElementById('confirmQuit').addEventListener('click', function() {
+      window.location.href = 'game-select.html';
+    });
+
+    // 게임오버 팝업의 retry 버튼 처리
+    document.querySelector('.game-over-popup .retry-button').addEventListener('click', function() {
+      location.reload();
+    });
+
+    // 게임오버 팝업의 quit 버튼 처리
+    document.querySelector('.game-over-popup .quit-button').addEventListener('click', function() {
+      window.location.href = 'game-select.html';
     });
   </script>
 </body>
