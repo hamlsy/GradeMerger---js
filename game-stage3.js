@@ -470,8 +470,9 @@ Events.on(engine, "collisionStart", (event) => {
     if (
       !disableAction &&
       (collision.bodyA.name === "topLine" || collision.bodyB.name === "topLine")) {
-      alert("Game over");
       clearInterval(earthquakeTimer);
+      const popupController = new GamePopupController();
+      popupController.showGameOver();
     }
   });
 });
