@@ -1,26 +1,26 @@
 const GRADES_BASE = [
     {
-      name: "base/F",
+      name: "./public/base/F",
       radius: 59 / 2,
     },
     {
-      name: "base/D",
+      name: "./public/base/D",
       radius: 63 / 2,
     },
     {
-      name: "base/C",
+      name: "./public/base/C",
       radius: 79 / 2,
     },
     {
-      name: "base/B",
+      name: "./public/base/B",
       radius: 105 / 2,
     },
     {
-      name: "base/A",
+      name: "./public/base/A",
       radius: 153 / 2,
     },
     {
-      name: "base/A_plus",
+      name: "./public/base/A_plus",
       radius: 235 / 2,
     }
   ];
