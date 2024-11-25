@@ -11,6 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/matter-js"></script>
 </head>
 <body>
+  
   <header>
     <div class="header-left">
       <a href="game-select.html" class="back-button">
@@ -19,11 +20,20 @@
       <h1 class="game-title">Grade Merger! - Stage 1</h1>
     </div>
     <div class="header-right">
-      <button class="pause-button">
-        <i class="fas fa-pause"></i>
-      </button>
     </div>
   </header>
+  <div class="side-panel">
+    <div class="control-guide">
+      <h3>Controls</h3>
+      <p><strong>A</strong>: Move Left</p>
+      <p><strong>D</strong>: Move Right</p>
+      <p><strong>S</strong>: Drop Item</p>
+    </div>
+    <div class="item">
+      <h3>Objective</h3>
+      <p>Collect 3 A+ grades! Touching the red line will result in failure!</p>
+    </div>
+  </div>
   <!-- 카운트다운 로직 -->
   <div class="countdown-overlay" id="countdownOverlay">
     <div class="countdown" id="countdown">3</div>

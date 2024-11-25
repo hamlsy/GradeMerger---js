@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="game-style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/matter-js"></script>
+  
 </head>
 <body>
   <header>
@@ -15,12 +16,26 @@
       <h1 class="game-title">Grade Merger! - Stage 2</h1>
     </div>
     <div class="header-right">
-      <button class="pause-button">
-        <i class="fas fa-pause"></i>
-      </button>
     </div>
   </header>
-  
+  <div class="side-panel">
+    <div class="control-guide">
+      <h3>Controls</h3>
+      <p><strong>A</strong>: Move Left</p>
+      <p><strong>D</strong>: Move Right</p>
+      <p><strong>S</strong>: Drop Item</p>
+    </div>
+    <div class="item">
+      <h3>Task Item</h3>
+      <img id="taskItemImage" src="public/base/task.png" alt="Task Item">
+      <p>When touching other Grades, reduces the Grade level by one stage.</p>
+    </div>
+    <div class="item">
+      <h3>Bomb Item</h3>
+      <img id="bombItemImage" src="public/base/bomb.png" alt="Bomb Item">
+      <p>When touching other Grades, destroys all connected Grades at that location.</p>
+    </div>
+  </div>
   <!-- 카운트다운 로직 -->
   <div class="countdown-overlay" id="countdownOverlay">
     <div class="countdown" id="countdown">3</div>
