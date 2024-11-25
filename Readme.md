@@ -70,33 +70,38 @@ Special items appear randomly:
 - Quick thinking and fast merging required!
 
 
-## 실행 화면 
-
-
 ### 메인 화면
+![image](https://github.com/user-attachments/assets/72a5e980-496d-4160-a00b-75cb5908999d)
 
 
 ### 튜토리얼
+![image](https://github.com/user-attachments/assets/81baedc9-c38a-4c53-852b-c6c8da5e827c)
 
 
 ### 스테이지 선택
-
+![image](https://github.com/user-attachments/assets/d990e38c-efd3-4710-b615-24b44b9009d1)
 
 ### Stage 1
-
+![image](https://github.com/user-attachments/assets/d064932c-bdf9-4f08-b7d4-f9c0f51bb3d8)
+![image](https://github.com/user-attachments/assets/27eb9748-352a-4c4d-a743-c0bbb789e9ec)
 
 
 ### Stage 2
-
+![image](https://github.com/user-attachments/assets/bbde18fb-afeb-4a69-97f5-9ac2cdba09b9)
+![image](https://github.com/user-attachments/assets/98470f79-0933-48c2-a222-dc9036252cac)
 
 
 ### Stage 3
+![image](https://github.com/user-attachments/assets/9d1594ce-0c95-4347-87b3-06379f4cf912)
+![image](https://github.com/user-attachments/assets/6fedfdd0-06ae-4fa1-8caa-3b7904f8b134)
 
 
 ### Game over
+![image](https://github.com/user-attachments/assets/3727fd70-06b3-49e4-a632-c7da85f9c72f)
 
 
 ### Win
+![image](https://github.com/user-attachments/assets/03186be4-d00f-4822-9d89-e2bea72ba00d)
 
 
 ## 🎉 즐거운 게임 되세요!
