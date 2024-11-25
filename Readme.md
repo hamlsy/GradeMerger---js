@@ -83,7 +83,8 @@ Special items appear randomly:
 
 ### Stage 1
 ![image](https://github.com/user-attachments/assets/d064932c-bdf9-4f08-b7d4-f9c0f51bb3d8)
-![image](https://github.com/user-attachments/assets/27eb9748-352a-4c4d-a743-c0bbb789e9ec)
+![image](https://github.com/user-attachments/assets/9a5f036a-6f41-48ff-86f7-9af2ea92ee38)
+
 
 
 ### Stage 2
