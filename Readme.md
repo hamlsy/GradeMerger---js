@@ -86,23 +86,24 @@ Special items appear randomly:
 ![image](https://github.com/user-attachments/assets/9a5f036a-6f41-48ff-86f7-9af2ea92ee38)
 
 
-
 ### Stage 2
 ![image](https://github.com/user-attachments/assets/bbde18fb-afeb-4a69-97f5-9ac2cdba09b9)
-![image](https://github.com/user-attachments/assets/98470f79-0933-48c2-a222-dc9036252cac)
+![image](https://github.com/user-attachments/assets/a9a2f7a6-7181-47af-8baf-2fd078a18f23)
 
 
 ### Stage 3
 ![image](https://github.com/user-attachments/assets/9d1594ce-0c95-4347-87b3-06379f4cf912)
-![image](https://github.com/user-attachments/assets/6fedfdd0-06ae-4fa1-8caa-3b7904f8b134)
+![image](https://github.com/user-attachments/assets/6efa613b-5c8e-4051-abaf-f9e6064ffe2a)
 
 
 ### Game over
-![image](https://github.com/user-attachments/assets/3727fd70-06b3-49e4-a632-c7da85f9c72f)
+![image](https://github.com/user-attachments/assets/63c104b0-e207-4a33-9d09-36dbfa73e445)
+
 
 
 ### Win
-![image](https://github.com/user-attachments/assets/03186be4-d00f-4822-9d89-e2bea72ba00d)
+![image](https://github.com/user-attachments/assets/0b861d29-df4b-476e-8e27-7d5dbc392141)
+
 
 
 ## 🎉 즐거운 게임 되세요!
